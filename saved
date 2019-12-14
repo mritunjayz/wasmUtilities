@@ -1,0 +1,30 @@
+Module.onRuntimeInitialized = function() {
+
+  const typedArray = new Float32Array(100);
+  for (let i=0; i<1000; i++) {
+    typedArray[i]=i;
+  }
+
+  let t1 = performance.now();
+  console.time('myTime1')
+
+  for (let i=0; i<100; i++) {
+   // for (let j=0; j<10; j++) {
+   //console.log(typedArray[i])
+  }
+  let t2 = performance.now();
+console.timeEnd('myTime1')
+console.log(t2-t1,"js");
+
+  
+  let bufferr = Module._malloc(typedArray.length * typedArray.BYTES_PER_ELEMENT);
+  Module.HEAPF32.set(typedArray, bufferr >> 2)
+
+  let t3 = performance.now();
+  console.time('myTime2')
+
+  Module.ccall('myFunction','number',["number", "number"],[bufferr, 100]);
+  let t4 = performance.now();
+console.timeEnd('myTime2')
+console.log(t4-t3,"c")
+  }

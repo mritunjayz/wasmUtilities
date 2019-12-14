@@ -1,0 +1,22 @@
+{
+  "name": "wasmUtilities",
+  "version": "1.0.0",
+  "description": "",
+  "main": "utilities.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "extend-shallow": "^3.0.2"
+  },
+  "dependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "node": {
+    "fs": "empty"
+  }
+}
